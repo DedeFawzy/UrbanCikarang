@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">UrbanCikarang</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_twit">UrbanCikarang on tweet</string>
+    <string name="welcome">Welcome to UrbanCikarang</string>
+    <string name="title_activity_twit">UrbanCikarang on tweet</string>
+    <string name="action_about">About</string>
+    <string name="action_exit">Exit Application?</string>
+    <string name="title_exit">Exit!</string>
+    <string name="alert">INFO</string>
+    <string name="koneksi">This app need internet connection, Continue?</string>
+    <string name="ntar">Later</string>
+    <string name="tunggu">Please wait until the page loaded</string>
+    <string name="putus">No internet connection, Exiting…</string>
+    <string name="title_activity_about">About application</string>
+    <string name="tentang">UrbanCikarang (Unofficial)</string>
+    <string name="credit">Click icon above to see credit list</string>
+    <string name="tutup">Close</string>
+    <string name="daftar_credit">UrbanCikarang is a social media that giving uptodate news about Cikarang and surroundings.\n \nThis Application unofficially maded by Dede Ahmad Fawzy aka @FawzyDede\n \nCredits goes to:\n• Vikar Ahmadi aka @VikarELMahdi\n• Febby Arisandy aka @Gentong90</string>
+    <string name="jomblo">©2015 Dede Fawzy\nFull Support for UrbanCikarang</string>
+    <string name="feedback">Send feedback</string>
+    <string name="yoik">Yes</string>
+    <string name="mbung">No</string>
+    <string name="keep_utd">Keep uptodate &amp; know more about Cikarang</string>
+    <string name="aksi">Complete action using</string>
+    <string name="iklan">Make ads on UrbanCikarang</string>
+    <string name="isi_iklan">Jenis iklan :\n \nRincian iklan :</string>
+    <string name="partner">Media Partner UrbanCikarang</string>
+    <string name="changelog">View Changelog</string>
+    <string name="title_activity_changelog">Noticeable Changelog</string>
+
+</resources>

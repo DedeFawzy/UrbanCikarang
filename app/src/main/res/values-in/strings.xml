@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">UrbanCikarang</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_twit">UrbanCikarang di tweet</string>
+    <string name="welcome">Selamat Datang di UrbanCikarang</string>
+    <string name="title_activity_twit">UrbanCikarang di tweet</string>
+    <string name="action_about">Tentang</string>
+    <string name="action_exit">Tutup Aplikasi?</string>
+    <string name="title_exit">Keluar!</string>
+    <string name="alert">INFO</string>
+    <string name="koneksi">Aplikasi ini membutuhkan koneksi internet, Lanjutkan?</string>
+    <string name="ntar">Nanti</string>
+    <string name="tunggu">Tunggu hingga halaman selesai memuat</string>
+    <string name="putus">Tidak ada koneksi internet, Mengeluarkan…</string>
+    <string name="title_activity_about">Tentang aplikasi</string>
+    <string name="tentang">UrbanCikarang (Unofficial)</string>
+    <string name="credit">Klik ikon diatas untuk melihat daftar penghargaan</string>
+    <string name="daftar_credit">UrbanCikarang adalah media sosial yang memberikan berita uptodate mengenai Cikarang dan sekitarnya.\n \nAplikasi ini dibuat secara tidak resmi oleh Dede Ahmad Fawzy aka @FawzyDede\n \nPenghargaan diberikan kepada:\n• Vikar Ahmadi aka @VikarELMahdi\n• Febby Arisandy aka @Gentong90</string>
+    <string name="tutup">Tutup</string>
+    <string name="jomblo">©2015 Dede Fawzy\nFull Support untuk UrbanCikarang</string>
+    <string name="feedback">Beri masukan</string>
+    <string name="yoik">Ya</string>
+    <string name="mbung">Tidak</string>
+    <string name="keep_utd">Keep Uptodate &amp; know more about Cikarang</string>
+    <string name="aksi">Lengkapi aksi menggunakan</string>
+    <string name="iklan">Buat iklan di UrbanCikarang</string>
+    <string name="isi_iklan">Jenis iklan :\n \nRincian iklan :</string>
+    <string name="partner">Media Partner UrbanCikarang</string>
+    <string name="changelog">Lihat Changelog</string>
+    <string name="title_activity_changelog">Noticable Changelog</string>
+
+</resources>
