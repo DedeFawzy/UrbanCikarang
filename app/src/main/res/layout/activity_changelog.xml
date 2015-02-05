@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff00aafa"
+    android:background="#ffa1d3e7"
     android:paddingLeft="15dp"
     android:paddingRight="15dp"
     tools:context="com.bagen.ilok.urbancikarang.Changelog">

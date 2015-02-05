@@ -7,8 +7,8 @@ android {
         applicationId "com.bagen.ilok.urbancikarang"
         minSdkVersion 15
         targetSdkVersion 21
-        versionCode 14022
-        versionName '1.2.1'
+        versionCode 15025
+        versionName '2.0'
     }
     buildTypes {
         release {

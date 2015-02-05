@@ -67,7 +67,7 @@
 
         <activity
             android:name="com.bagen.ilok.urbancikarang.nearby.PlaceDetailsActivity"
-            android:label="@string/title_activity_cikarang_nearby" >
+            android:label="@string/detail_place" >
             <intent-filter>
                 <action android:name=".PlaceDetails" />
                 <category android:name="android.intent.category.DEFAULT" />

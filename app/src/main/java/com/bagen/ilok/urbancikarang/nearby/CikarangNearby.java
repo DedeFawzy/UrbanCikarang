@@ -95,6 +95,9 @@ public class CikarangNearby extends FragmentActivity implements LocationListener
             // Enabling MyLocation in Google Map
             mGoogleMap.setMyLocationEnabled(true);
 
+            // Set View to Hybrid mode
+            mGoogleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+
             // Getting LocationManager object from System Service LOCATION_SERVICE
             LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 

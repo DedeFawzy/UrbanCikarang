@@ -36,29 +36,46 @@
         <item>airport</item>
         <item>atm</item>
         <item>bank</item>
-        <item>bus_station</item>
-        <item>church</item>
         <item>doctor</item>
         <item>hospital</item>
-        <item>mosque</item>
-        <item>movie_theater</item>
+        <item>fire_station</item>
+        <item>gas_station</item>
+        <item>bus_station</item>
+        <item>church</item>
         <item>hindu_temple</item>
+        <item>mosque</item>
+        <item>school</item>
+        <item>university</item>
+        <item>movie_theater</item>
         <item>restaurant</item>
+        <item>clothing_store</item>
+        <item>electronics_store</item>
+
+
     </string-array>
     <string-array name="place_type_name">
         <item>Airport</item>
-        <item>ATM</item>
+        <item>Atm</item>
         <item>Bank</item>
-        <item>Bus Station</item>
-        <item>Church</item>
         <item>Doctor</item>
         <item>Hospital</item>
+        <item>Fire station</item>
+        <item>Gas station</item>
+        <item>Bus station</item>
+        <item>Church</item>
+        <item>Hindu temple</item>
         <item>Mosque</item>
-        <item>Movie Theater</item>
-        <item>Hindu Temple</item>
+        <item>School</item>
+        <item>University</item>
+        <item>Movie theater</item>
         <item>Restaurant</item>
+        <item>Clothing store</item>
+        <item>Electronics store</item>
+
+
     </string-array>
 
     <string name="title_activity_cikarang_nearby">Places Near Cikarang</string>
+    <string name="detail_place">Detail</string>
 
 </resources>
