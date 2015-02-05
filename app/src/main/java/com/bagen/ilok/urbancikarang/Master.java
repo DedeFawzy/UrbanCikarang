@@ -19,6 +19,8 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.bagen.ilok.urbancikarang.nearby.CikarangNearby;
+
 
 public class Master extends Activity {
 
@@ -123,6 +125,10 @@ public class Master extends Activity {
         switch (item.getItemId()) {
             case R.id.action_twit:
                 startActivity(new Intent(Master.this, Twit.class));
+                overridePendingTransition(R.anim.translate_fast, R.anim.translate_fast);
+                return true;
+            case R.id.action_nearby:
+                startActivity(new Intent(Master.this, CikarangNearby.class));
                 overridePendingTransition(R.anim.translate_fast, R.anim.translate_fast);
                 return true;
             case R.id.action_iklan:

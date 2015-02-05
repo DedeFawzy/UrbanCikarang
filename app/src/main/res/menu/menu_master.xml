@@ -4,6 +4,9 @@
     <item android:id="@+id/action_twit" android:title="@string/action_twit"
         android:orderInCategory="100" app:showAsAction="never" />
 
+    <item android:id="@+id/action_nearby" android:title="Nearby Places"
+        android:orderInCategory="100" app:showAsAction="never" />
+
     <item android:id="@+id/action_iklan" android:title="@string/iklan"
         android:orderInCategory="100" app:showAsAction="never" />
 

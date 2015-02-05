@@ -2,7 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bagen.ilok.urbancikarang" >
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <permission
+        android:name="com.bagen.ilok.urbancikarang.nearby.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature"/>
+    <uses-permission android:name="com.bagen.ilok.urbancikarang.nearby.permission.MAPS_RECEIVE"/>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-feature
@@ -51,6 +60,24 @@
             android:label="@string/title_activity_changelog"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".nearby.CikarangNearby"
+            android:label="@string/title_activity_cikarang_nearby" >
+        </activity>
+
+        <activity
+            android:name="com.bagen.ilok.urbancikarang.nearby.PlaceDetailsActivity"
+            android:label="@string/title_activity_cikarang_nearby" >
+            <intent-filter>
+                <action android:name=".PlaceDetails" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyCgdzgl1W3VbcfdyVCWNVVCRwTbSS2NhD4"/>
+
     </application>
 
 </manifest>
