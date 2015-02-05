@@ -92,7 +92,11 @@ public class CikarangNearby extends FragmentActivity implements LocationListener
             // Getting Google Map
             mGoogleMap = fragment.getMap();
 
-            // Enabling MyLocation in Google Map
+            // Get Maps UI Settings control
+            mGoogleMap.getUiSettings().setZoomControlsEnabled(true);
+            mGoogleMap.getUiSettings().setZoomGesturesEnabled(true);
+            mGoogleMap.getUiSettings().setCompassEnabled(true);
+            mGoogleMap.getUiSettings().setMapToolbarEnabled(false);
             mGoogleMap.setMyLocationEnabled(true);
 
             // Set View to Hybrid mode
@@ -299,7 +303,7 @@ public class CikarangNearby extends FragmentActivity implements LocationListener
         LatLng latLng = new LatLng(mLatitude, mLongitude);
 
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(12));
+        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(14));
     }
 
     @Override

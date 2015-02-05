@@ -75,7 +75,7 @@
 
     </string-array>
 
-    <string name="title_activity_cikarang_nearby">Tempat Sekitar Cikarang</string>
+    <string name="title_activity_cikarang_nearby">Tempat dekat anda</string>
     <string name="detail_place">Rincian</string>
 
 </resources>
