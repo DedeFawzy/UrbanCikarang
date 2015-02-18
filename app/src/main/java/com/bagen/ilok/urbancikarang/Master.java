@@ -151,12 +151,12 @@ public class Master extends Activity {
                 startActivity(Intent.createChooser(partnerIntent, (getString(R.string.aksi))));
                 return true;
             case R.id.action_feedback:
-                Intent feedIntent = new Intent(android.content.Intent.ACTION_SEND);
-                String feedEmailList[] = {"dede.fawzy@gmail.com"};
-                feedIntent.putExtra(android.content.Intent.EXTRA_EMAIL, feedEmailList);
-                feedIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Feedback for UrbanCikarang app");
-                feedIntent.setType("plain/text");
-                startActivity(Intent.createChooser(feedIntent, (getString(R.string.aksi))));
+                Intent fawzyIntent = new Intent(android.content.Intent.ACTION_SEND);
+                String DedeFawzyEmailList[] = {"dede.fawzy@gmail.com"};
+                fawzyIntent.putExtra(android.content.Intent.EXTRA_EMAIL, DedeFawzyEmailList);
+                fawzyIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Feedback for UrbanCikarang app");
+                fawzyIntent.setType("plain/text");
+                startActivity(Intent.createChooser(fawzyIntent, (getString(R.string.aksi))));
                 return true;
             case R.id.action_about:
                 startActivity(new Intent(Master.this, About.class));
