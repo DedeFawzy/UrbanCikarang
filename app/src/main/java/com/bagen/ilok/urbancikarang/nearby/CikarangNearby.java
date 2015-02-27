@@ -118,7 +118,7 @@ public class CikarangNearby extends FragmentActivity implements LocationListener
                 onLocationChanged(location);
             }
 
-            locationManager.requestLocationUpdates(provider, 20000, 0, this);
+            locationManager.requestLocationUpdates(provider, 0, 20000, this);
 
             mGoogleMap.setOnInfoWindowClickListener(new OnInfoWindowClickListener() {
 
@@ -303,7 +303,7 @@ public class CikarangNearby extends FragmentActivity implements LocationListener
         LatLng latLng = new LatLng(mLatitude, mLongitude);
 
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(14));
+        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(12));
     }
 
     @Override
