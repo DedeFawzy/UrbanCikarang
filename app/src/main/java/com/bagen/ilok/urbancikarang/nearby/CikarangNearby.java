@@ -2,6 +2,7 @@ package com.bagen.ilok.urbancikarang.nearby;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -22,10 +23,13 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
+import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import org.json.JSONObject;
 
@@ -35,16 +39,18 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 public class CikarangNearby extends FragmentActivity implements LocationListener{
 
     GoogleMap mGoogleMap;
     Spinner mSprPlaceType;
+    private Marker myMarker;
 
     String[] mPlaceType=null;
     String[] mPlaceTypeName=null;
-
+    ArrayList<LatLng> mMarkerPoints;
     double mLatitude=0;
     double mLongitude=0;
 
@@ -86,6 +92,8 @@ public class CikarangNearby extends FragmentActivity implements LocationListener
             dialog.show();
         }else { // Google Play Services are available
 
+            mMarkerPoints = new ArrayList<LatLng>();
+
             // Getting reference to the SupportMapFragment
             SupportMapFragment fragment = ( SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
 
@@ -119,6 +127,54 @@ public class CikarangNearby extends FragmentActivity implements LocationListener
             }
 
             locationManager.requestLocationUpdates(provider, 0, 20000, this);
+
+
+
+            // Setting onclick event listener for the map
+            mGoogleMap.setOnMapClickListener(new OnMapClickListener() {
+
+                @Override
+                public void onMapClick(LatLng point) {
+
+                    // Already map contain destination location
+                    if(mMarkerPoints.size()>1){
+                        mMarkerPoints.clear();
+                        mGoogleMap.clear();
+                        LatLng startPoint = new LatLng(mLatitude, mLongitude);
+                        drawMarker(startPoint);
+                    }
+
+                    drawMarker(point);
+
+                    // Checks, whether start and end locations are captured
+                    if(mMarkerPoints.size() >= 2){
+                        LatLng origin = mMarkerPoints.get(0);
+                        LatLng dest = mMarkerPoints.get(1);
+
+                        // Getting URL to the Google Directions API
+                        String url = getDirectionsUrl(origin, dest);
+
+                        DownloadTask downloadTask = new DownloadTask();
+
+                        // Start downloading json data from Google Directions API
+                        downloadTask.execute(url);
+                    }
+                }
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             mGoogleMap.setOnInfoWindowClickListener(new OnInfoWindowClickListener() {
 
@@ -158,6 +214,37 @@ public class CikarangNearby extends FragmentActivity implements LocationListener
             });
         }
     }
+
+
+
+
+
+    private String getDirectionsUrl(LatLng origin,LatLng dest){
+
+        // Origin of route
+        String str_origin = "origin="+origin.latitude+","+origin.longitude;
+
+        // Destination of route
+        String str_dest = "destination="+dest.latitude+","+dest.longitude;
+
+        // Sensor enabled
+        String sensor = "sensor=false";
+
+        // Building the parameters to the web service
+        String parameters = str_origin+"&"+str_dest+"&"+sensor;
+
+        // Output format
+        String output = "json";
+
+        // Building the url to the web service
+        String url = "https://maps.googleapis.com/maps/api/directions/"+output+"?"+parameters;
+
+        return url;
+    }
+
+
+
+
 
     /** A method to download json data from url */
     private String downloadUrl(String strUrl) throws IOException{
@@ -200,6 +287,135 @@ public class CikarangNearby extends FragmentActivity implements LocationListener
         }
         return data;
     }
+
+
+
+
+
+    /** A class to download data from Google Directions URL */
+    private class DownloadTask extends AsyncTask<String, Void, String>{
+
+        // Downloading data in non-ui thread
+        @Override
+        protected String doInBackground(String... url) {
+
+            // For storing data from web service
+            String data = "";
+
+            try{
+                // Fetching the data from web service
+                data = downloadUrl(url[0]);
+            }catch(Exception e){
+                Log.d("Background Task",e.toString());
+            }
+            return data;
+        }
+
+        // Executes in UI thread, after the execution of
+        // doInBackground()
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            SecondParserTask seccondparserTask = new SecondParserTask();
+
+            // Invokes the thread for parsing the JSON data
+            seccondparserTask.execute(result);
+
+        }
+    }
+
+
+
+
+
+
+
+    /** A class to parse the Google Directions in JSON format */
+    private class SecondParserTask extends AsyncTask<String, Integer, List<List<HashMap<String,String>>> >{
+
+        // Parsing the data in non-ui thread
+        @Override
+        protected List<List<HashMap<String, String>>> doInBackground(String... jsonData) {
+
+            JSONObject jObject;
+            List<List<HashMap<String, String>>> routes = null;
+
+            try{
+                jObject = new JSONObject(jsonData[0]);
+                DirectionsJSONParser parser = new DirectionsJSONParser();
+
+                // Starts parsing data
+                routes = parser.parse(jObject);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            return routes;
+        }
+
+        // Executes in UI thread, after the parsing process
+        @Override
+        protected void onPostExecute(List<List<HashMap<String, String>>> result) {
+            ArrayList<LatLng> points = null;
+            PolylineOptions lineOptions = null;
+
+            // Traversing through all the routes
+            for(int i=0;i<result.size();i++){
+                points = new ArrayList<LatLng>();
+                lineOptions = new PolylineOptions();
+
+                // Fetching i-th route
+                List<HashMap<String, String>> path = result.get(i);
+
+                // Fetching all the points in i-th route
+                for(int j=0;j<path.size();j++){
+                    HashMap<String,String> point = path.get(j);
+
+                    double lat = Double.parseDouble(point.get("lat"));
+                    double lng = Double.parseDouble(point.get("lng"));
+                    LatLng position = new LatLng(lat, lng);
+
+                    points.add(position);
+                }
+
+                // Adding all the points in the route to LineOptions
+                lineOptions.addAll(points);
+                lineOptions.width(2);
+                lineOptions.color(Color.RED);
+
+            }
+
+            // Drawing polyline in the Google Map for the i-th route
+            mGoogleMap.addPolyline(lineOptions);
+        }
+    }
+
+
+    private void drawMarker(LatLng point){
+        mMarkerPoints.add(point);
+
+        // Creating MarkerOptions
+        MarkerOptions options = new MarkerOptions();
+
+        // Setting the position of the marker
+        options.position(point);
+
+        /**
+         * For the start location, the color of marker is GREEN and
+         * for the end location, the color of marker is RED.
+         */
+        if(mMarkerPoints.size()==1){
+            options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+        }else if(mMarkerPoints.size()==2){
+            options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+        }
+
+        // Add new marker to the Google Map Android API V2
+        mGoogleMap.addMarker(options);
+    }
+
+
+
     /** A class, to download Google Places */
     private class PlacesTask extends AsyncTask<String, Integer, String>{
 
@@ -298,12 +514,19 @@ public class CikarangNearby extends FragmentActivity implements LocationListener
 
     @Override
     public void onLocationChanged(Location location) {
-        mLatitude = location.getLatitude();
-        mLongitude = location.getLongitude();
-        LatLng latLng = new LatLng(mLatitude, mLongitude);
+        // Draw the marker, if destination location is not set
+        if(mMarkerPoints.size() < 2){
 
-        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(12));
+            mLatitude = location.getLatitude();
+            mLongitude = location.getLongitude();
+            LatLng point = new LatLng(mLatitude, mLongitude);
+
+            mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(point));
+            mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(12));
+
+            drawMarker(point);
+        }
+
     }
 
     @Override
