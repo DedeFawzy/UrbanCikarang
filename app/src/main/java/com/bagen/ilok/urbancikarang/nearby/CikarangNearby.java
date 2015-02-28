@@ -46,7 +46,6 @@ public class CikarangNearby extends FragmentActivity implements LocationListener
 
     GoogleMap mGoogleMap;
     Spinner mSprPlaceType;
-    private Marker myMarker;
 
     String[] mPlaceType=null;
     String[] mPlaceTypeName=null;
