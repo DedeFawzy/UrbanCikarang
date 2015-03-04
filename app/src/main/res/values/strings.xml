@@ -75,7 +75,7 @@
 
     </string-array>
 
-    <string name="title_activity_cikarang_nearby">Places near you</string>
+    <string name="title_activity_cikarang_nearby">Maps</string>
     <string name="detail_place">Detail</string>
     <string name="normal">Normal</string>
     <string name="satelit">Satellite</string>
