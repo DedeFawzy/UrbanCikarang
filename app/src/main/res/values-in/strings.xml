@@ -77,5 +77,8 @@
 
     <string name="title_activity_cikarang_nearby">Tempat dekat anda</string>
     <string name="detail_place">Rincian</string>
+    <string name="normal">Normal</string>
+    <string name="satelit">Satellite</string>
+    <string name="terrain">Terrain</string>
 
 </resources>

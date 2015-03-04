@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 import com.bagen.ilok.urbancikarang.R;
@@ -107,7 +108,23 @@ public class CikarangNearby extends FragmentActivity implements LocationListener
             mGoogleMap.setMyLocationEnabled(true);
 
             // Set View to Hybrid mode
-            mGoogleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+            mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+
+            RadioGroup rgViews = (RadioGroup) findViewById(R.id.rg_views);
+
+            rgViews.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+                @Override
+                public void onCheckedChanged(RadioGroup group, int checkedId) {
+                    if(checkedId == R.id.rb_normal){
+                        mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                    }else if(checkedId == R.id.rb_satellite){
+                        mGoogleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+                    }else if(checkedId == R.id.rb_terrain){
+                        mGoogleMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+                    }
+                }
+            });
 
             // Getting LocationManager object from System Service LOCATION_SERVICE
             LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
