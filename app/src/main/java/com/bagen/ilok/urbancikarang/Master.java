@@ -40,7 +40,7 @@ public class Master extends Activity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                if(isNetworkStatusAvialable (getApplicationContext())) {
+                if (isNetworkStatusAvialable(getApplicationContext())) {
                     Toast.makeText(getApplicationContext(), (getString(R.string.tunggu)), Toast.LENGTH_SHORT).show();
                     setContentView(R.layout.activity_master);
                     mWebView = (WebView) findViewById(R.id.activity_master_webview);
@@ -55,8 +55,7 @@ public class Master extends Activity {
                     mWebView.getSettings().setBuiltInZoomControls(true);
                     mWebView.getSettings().setUseWideViewPort(true);
                     mWebView.getSettings().setLoadWithOverviewMode(true);
-                }
-                else {
+                } else {
                     Toast.makeText(getApplicationContext(), (getString(R.string.putus)), Toast.LENGTH_SHORT).show();
                     finish();
 
@@ -134,7 +133,7 @@ public class Master extends Activity {
             case R.id.action_iklan:
                 Toast.makeText(getApplicationContext(), "Beriklan di UrbanCikarang mulai dari Rp. 50.000", Toast.LENGTH_SHORT).show();
                 Intent iklanIntent = new Intent(android.content.Intent.ACTION_SEND);
-                String iklanEmailList[] = {"iklan.urbancikarang@gmail.com"};
+                String iklanEmailList[] = {"urbancikarang@gmail.com"};
                 iklanIntent.putExtra(android.content.Intent.EXTRA_EMAIL, iklanEmailList);
                 iklanIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Beriklan di UrbanCikarang");
                 iklanIntent.setType("plain/text");
@@ -143,7 +142,7 @@ public class Master extends Activity {
                 return true;
             case R.id.action_partner:
                 Intent partnerIntent = new Intent(android.content.Intent.ACTION_SEND);
-                String partnerEmailList[] = {"mediapartner.urbancikarang@gmail.com"};
+                String partnerEmailList[] = {"urbancikarang@gmail.com"};
                 partnerIntent.putExtra(android.content.Intent.EXTRA_EMAIL, partnerEmailList);
                 partnerIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Media Partner UrbanCikarang");
                 partnerIntent.setType("plain/text");
